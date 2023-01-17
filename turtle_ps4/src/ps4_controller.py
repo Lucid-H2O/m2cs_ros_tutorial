@@ -52,8 +52,8 @@ def callback(data):
     if ((data.dpad_x == 1) and (old_data.dpad_x == 0)):
     multi_pos -= 1
     
-    if multi_pos>5:
-    	multi_pos=5
+    if multi_pos>4:
+    	multi_pos=4
     	
     if multi_pos<0:
     	multi_pos=0
