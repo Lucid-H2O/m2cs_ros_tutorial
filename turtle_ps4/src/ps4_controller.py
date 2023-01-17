@@ -46,10 +46,10 @@ def callback(data):
     
     
     #change multiplier levels
-    if ((data.dpad_y == 1) and (old_data.dpad_y == 0)):(
+    if ((data.dpad_y == 1) and (old_data.dpad_y == 0)):
     multi_pos += 1
     	
-    if ((data.dpad_x == true) and (old_data.dpad_x == 0)):(
+    if ((data.dpad_x == true) and (old_data.dpad_x == 0)):
     multi_pos -= 1
     
     if multi_pos>5:
