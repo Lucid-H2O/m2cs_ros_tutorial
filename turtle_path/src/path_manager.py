@@ -43,7 +43,7 @@ def cb_walk(req):
     
     vel = Twist() # publish a velocity 0 at the end, to ensure the turtle really stops
     pub.publish(vel)
-
+    
     return True
 
 def cb_orientation(req):
@@ -74,8 +74,8 @@ if __name__ == '__main__':
     sub = rospy.Subscriber('/turtle1/pose', Pose, cb_pose) # subscriber of the turtle position, callback to cb_pose
     
     ## init each service server here:
-    rospy.Service( 'set_orientation' ,SetOrientation, cb_orientation)
-    rospy.Service( 'walk_distance',WalkDistance , cb_walk)	
+    success = rospy.Service( 'set_orientation' ,SetOrientation, cb_orientation)
+    success = rospy.Service( 'walk_distance',WalkDistance , cb_walk)	
     # rospy.Service( ... )		# callback to cb_orientation
     # rospy.Service( ... )		# callback to cb_walk
     
