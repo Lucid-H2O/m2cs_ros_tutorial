@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import rospy
 from geometry_msgs.msg import Twist
-from Ps4Data.msg import Ps4Data
+from m2_ps4.msg import Ps4Data
 from turtlesim.srv import SetPen
 from std_srvs.srv import Empty
 # hint: some imports are missing
@@ -19,7 +19,7 @@ def callback(data):
     vel = Twist()
     
     vel.angular.z = speed_multi[multi_pos] * data.hat_rx
-    vel.linear.x = speed_multi[multi_pos] * data.hat_lx
+    vel.linear.x = speed_multi[multi_pos] * data.hat_ly
     
     # you should publish the velocity here!
     pub.publish(vel)
@@ -29,28 +29,28 @@ def callback(data):
     # then do something...
     
     # ps button clears the trail
-    if ((data.ps == true) and (old_data.ps == false)):
+    if ((data.ps == True) and (old_data.ps == False)):
     	srv_clear()
     
     #shape buttons change color
-    if ((data.cross == true) and (old_data.cross == false)):
-    srv_col((0,0,255),1,1)
+    if ((data.cross == True) and (old_data.cross == False)):
+    	srv_col(0,0,255,2,0)
     
-    if ((data.circle == true) and (old_data.circle == false)):
-    srv_col((255,0,0),1,1)
+    if ((data.circle == True) and (old_data.circle == False)):
+    	srv_col(255,0,0,2,0)
     
-    if ((data.triangle == true) and (old_data.triangle == false)):
-    srv_col((0,255,0),1,1)
+    if ((data.triangle == True) and (old_data.triangle == False)):
+    	srv_col(0,255,0,2,0)
     
-    if ((data.square == true) and (old_data.square == false)):
-    srv_col((255,0,255),1,1)
+    if ((data.square == True) and (old_data.square == False)):
+    	srv_col(128,0,128,2,0)
     
     
     #change multiplier levels
     if ((data.dpad_y == 1) and (old_data.dpad_y == 0)):
         multi_pos += 1
     	
-    if ((data.dpad_x == 1) and (old_data.dpad_x == 0)):
+    if ((data.dpad_y == -1) and (old_data.dpad_y == 0)):
         multi_pos -= 1
     
     if multi_pos>4:
